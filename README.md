@@ -100,17 +100,44 @@ Generated rasters, tiled outputs and ZIP packages can be large. For real areas, 
 
 ### Hermes Agent setup
 
-A clean Hermes Agent needs the terminal and file tools enabled so it can clone the repository, inspect GPX attachments, run commands and verify outputs. Install or copy the skill instructions from `docs/hermes-skill.md` into the agent profile so natural-language requests like “prepare OB sprint materials including OOM and upload to Drive” are mapped to the correct CLI flags.
+A clean Hermes Agent needs the terminal and file tools enabled so it can clone the repository, inspect GPX attachments, run commands and verify outputs. Install the included Hermes skill so natural-language requests like “prepare OB sprint materials including OOM and upload to Drive” are mapped to the correct CLI flags.
 
-Typical options:
+First clone the CLI repository somewhere stable:
 
 ```bash
-# clone the repo somewhere stable
 git clone https://github.com/severynoagent-ui/orienteering-map-prep.git ~/orienteering-map-prep
+```
 
-# create a local Hermes skill from the provided template/instructions
+Then install the Hermes skill. The repository includes a root `SKILL.md` for direct URL installation and a copy under `skill/SKILL.md` for users who prefer an explicit skill directory.
+
+Direct install from GitHub raw URL:
+
+```bash
+hermes skills install \
+  https://raw.githubusercontent.com/severynoagent-ui/orienteering-map-prep/main/SKILL.md \
+  --name orienteering-map-prep \
+  --category productivity
+```
+
+Or install manually from the cloned repository:
+
+```bash
 mkdir -p ~/.hermes/skills/orienteering-map-prep
-cp ~/orienteering-map-prep/docs/hermes-skill.md ~/.hermes/skills/orienteering-map-prep/SKILL.md
+cp ~/orienteering-map-prep/SKILL.md ~/.hermes/skills/orienteering-map-prep/SKILL.md
+```
+
+For Hermes installations that use GitHub taps, add this repository as a skill source and then install the skill:
+
+```bash
+hermes skills tap add severynoagent-ui/orienteering-map-prep
+hermes skills install orienteering-map-prep
+```
+
+If your Hermes version expects a full URL for taps instead of `owner/repo`, use:
+
+```bash
+hermes skills tap add https://github.com/severynoagent-ui/orienteering-map-prep
+hermes skills install orienteering-map-prep
 ```
 
 Restart or reset the Hermes session after installing the skill so it can be discovered.

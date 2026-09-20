@@ -1,19 +1,42 @@
-# Hermes skill: orienteering-map-prep
+---
+name: orienteering-map-prep
+description: "Prepare OpenOrienteering Mapper base-layer packages from GPX areas, optimized for Czech Republic ČÚZK data sources."
+version: 1.0.0
+author: orienteering-map-prep contributors
+license: MIT
+platforms: [linux]
+metadata:
+  hermes:
+    tags: [orienteering, openorienteering, gis, czech-republic, cuzk, gdal, mapping]
+    homepage: https://github.com/severynoagent-ui/orienteering-map-prep
+---
 
-This repository can be wrapped as a Hermes Agent skill for preparing orienteering map source packages from GPX-defined areas.
+# orienteering-map-prep Hermes skill
 
-## Intended public use
-
-Use this skill when a user sends a GPX boundary and asks for base layers for an orienteering map, especially in the Czech Republic.
+Use this skill when a user sends a GPX boundary and asks for orienteering map base layers, especially for the Czech Republic.
 
 The workflow is optimized for Czech data sources:
 
-- target CRS `EPSG:5514` by default
+- default target CRS: `EPSG:5514` (S-JTSK / Krovak)
 - ČÚZK DMR 5G terrain model
 - ČÚZK DMP OK surface model
 - ČÚZK RGB/CIR orthophoto services
 - RÚIAN building polygons
+- BGS WMM2025 magnetic declination lookup
 - OpenOrienteering Mapper setup and optional `.omap` project generation
+
+Repository: <https://github.com/severynoagent-ui/orienteering-map-prep>
+
+## Required local repository
+
+This skill is an agent instruction wrapper around a local CLI repository. If the repository is not already present, clone it first:
+
+```bash
+git clone https://github.com/severynoagent-ui/orienteering-map-prep.git ~/orienteering-map-prep
+cd ~/orienteering-map-prep
+```
+
+Use the local repository path in all commands. If the user or environment uses a different clone location, adapt paths accordingly.
 
 ## Requirements for the full workflow
 
@@ -28,11 +51,11 @@ A clean Hermes Agent can use this repository, but to reproduce the full end-to-e
 | Hermes terminal/file tools | cloning the repo, reading files, running commands, verifying outputs |
 | Google Drive upload setup | optional; configure a compatible helper through `ORIMAP_GOOGLE_API` for Drive uploads |
 | Telegram/WhatsApp or other gateway attachments | optional; needed only when receiving GPX files through messaging platforms |
-| This skill/instruction file installed | recommended so the agent maps natural-language Czech OB requests to the right CLI flags |
+| This skill installed | recommended so the agent maps natural-language OB requests to the right CLI flags |
 
 If Drive upload is not configured, produce and report the local ZIP instead of claiming an upload. If the skill is not installed, the CLI still works but the agent may require explicit command-line instructions.
 
-### Setup checklist for a new machine/profile
+## Setup checklist for a new machine/profile
 
 1. Install GDAL/PROJ and Python GDAL bindings, for example on Debian/Ubuntu:
 
@@ -54,37 +77,14 @@ If Drive upload is not configured, produce and report the local ZIP instead of c
    ./scripts/test_mvp.sh
    ```
 
-3. Install this skill into Hermes. Preferred direct install from GitHub raw URL:
-
-   ```bash
-   hermes skills install \
-     https://raw.githubusercontent.com/severynoagent-ui/orienteering-map-prep/main/SKILL.md \
-     --name orienteering-map-prep \
-     --category productivity
-   ```
-
-   Or install manually from the cloned repository:
-
-   ```bash
-   mkdir -p ~/.hermes/skills/orienteering-map-prep
-   cp ~/orienteering-map-prep/SKILL.md ~/.hermes/skills/orienteering-map-prep/SKILL.md
-   ```
-
-   For Hermes installations using skill taps:
-
-   ```bash
-   hermes skills tap add severynoagent-ui/orienteering-map-prep
-   hermes skills install orienteering-map-prep
-   ```
-
-4. For large jobs, optionally move outputs/cache to a bigger disk:
+3. For large jobs, optionally move outputs/cache to a bigger disk:
 
    ```bash
    export ORIMAP_PROJECT_ROOT=/data/orimap-projects
    export ORIMAP_CACHE_ROOT=/data/orimap-cache
    ```
 
-5. For Google Drive upload, configure a user-specific compatible helper instead of hardcoding credentials:
+4. For Google Drive upload, configure a user-specific compatible helper instead of hardcoding credentials:
 
    ```bash
    export ORIMAP_GOOGLE_API=/path/to/google_api.py
@@ -94,14 +94,12 @@ If Drive upload is not configured, produce and report the local ZIP instead of c
 
 Agents must verify outputs (`manifest.json`, ZIP, QA logs, optional `.omap`) before reporting success. If Drive helper variables are missing, do not use `--drive-upload`; report the local ZIP path instead.
 
-## Minimal skill instructions
+## Default interpretation
 
-```markdown
-Use the local repository `orienteering-map-prep` to generate headless GIS packages for OpenOrienteering Mapper.
+When the user asks for OB/orienteering base materials from a GPX:
 
-Default interpretation:
 - GPX attachment defines the AOI boundary.
-- Default CRS: EPSG:5514.
+- Default CRS: `EPSG:5514`.
 - Default Czech OB products: DEM, hillshade, multidirectional hillshade, contours, slope, RGB orthophoto, CIR orthophoto, RÚIAN buildings, DMP OK, relative surface/vegetation height.
 - Forest maps default to 1:10 000 / ISOM 2017-2.
 - Sprint maps default to 1:4 000 / ISSprOM 2019.
@@ -109,11 +107,12 @@ Default interpretation:
 - Generate `.omap` only when the user explicitly asks for an OOM project / OpenOrienteering Mapper file.
 - Upload to Drive only if the user asks and a local Drive helper is configured.
 - If tiling is requested, use the same grid across products; columns A.. west-east, rows 1.. north-south, suffixes like `_A1`.
+- For tiled jobs with many files, prefer uploading the final ZIP unless the user explicitly wants a fully expanded Drive folder.
 
-Run:
+## Command pattern
 
 ```bash
-cd /path/to/orienteering-map-prep
+cd ~/orienteering-map-prep
 /usr/bin/python3 -m orimap_prep.cli \
   --input-gpx /absolute/path/to/input.gpx \
   --project-id <safe-id> \
@@ -121,9 +120,41 @@ cd /path/to/orienteering-map-prep
   --json
 ```
 
-Important: do not claim success until the command completes, QA passes, and the ZIP/manifest exist.
+For sprint with OOM project:
+
+```bash
+/usr/bin/python3 -m orimap_prep.cli \
+  --input-gpx /absolute/path/to/input.gpx \
+  --project-id <safe-id> \
+  --map-type sprint \
+  --map-scale 4000 \
+  --map-standard "ISSprOM 2019" \
+  --generate-omap \
+  --json
 ```
 
-## Privacy guidance for agents
+For Drive upload, only when configured and requested:
+
+```bash
+/usr/bin/python3 -m orimap_prep.cli \
+  --input-gpx /absolute/path/to/input.gpx \
+  --project-id <safe-id> \
+  --generate-omap \
+  --drive-upload \
+  --cleanup-local-after-drive \
+  --json
+```
+
+## Verification before final response
+
+Do not claim success until the command completes and you have verified:
+
+- `manifest.json` exists
+- ZIP exists, or Drive upload metadata/links exist when upload was requested
+- QA did not report blocking errors
+- requested `.omap` exists when requested
+- local outputs were deleted only when `--cleanup-local-after-drive` was requested and upload succeeded
+
+## Privacy guidance
 
 Do not publish user GPX files, generated map packages, Google tokens, local paths, or account-specific helper paths. Keep generated outputs out of git; publish only source code, docs, small fixtures, and tests.
