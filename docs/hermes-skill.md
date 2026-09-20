@@ -32,6 +32,52 @@ A clean Hermes Agent can use this repository, but to reproduce the full end-to-e
 
 If Drive upload is not configured, produce and report the local ZIP instead of claiming an upload. If the skill is not installed, the CLI still works but the agent may require explicit command-line instructions.
 
+### Setup checklist for a new machine/profile
+
+1. Install GDAL/PROJ and Python GDAL bindings, for example on Debian/Ubuntu:
+
+   ```bash
+   sudo apt update
+   sudo apt install -y git python3 python3-gdal gdal-bin proj-bin zip unzip
+   ```
+
+2. Clone and test the repository:
+
+   ```bash
+   git clone https://github.com/severynoagent-ui/orienteering-map-prep.git ~/orienteering-map-prep
+   cd ~/orienteering-map-prep
+   /usr/bin/python3 - <<'PY'
+   from osgeo import gdal
+   print(gdal.VersionInfo('--version'))
+   PY
+   command -v gdalwarp gdal_translate gdalinfo ogr2ogr ogrinfo
+   ./scripts/test_mvp.sh
+   ```
+
+3. Install this instruction file as a Hermes skill if desired:
+
+   ```bash
+   mkdir -p ~/.hermes/skills/orienteering-map-prep
+   cp ~/orienteering-map-prep/docs/hermes-skill.md ~/.hermes/skills/orienteering-map-prep/SKILL.md
+   ```
+
+4. For large jobs, optionally move outputs/cache to a bigger disk:
+
+   ```bash
+   export ORIMAP_PROJECT_ROOT=/data/orimap-projects
+   export ORIMAP_CACHE_ROOT=/data/orimap-cache
+   ```
+
+5. For Google Drive upload, configure a user-specific compatible helper instead of hardcoding credentials:
+
+   ```bash
+   export ORIMAP_GOOGLE_API=/path/to/google_api.py
+   export ORIMAP_GOOGLE_SETUP=/path/to/setup.py   # optional auth check
+   export ORIMAP_GOOGLE_PY=/path/to/python        # optional helper Python
+   ```
+
+Agents must verify outputs (`manifest.json`, ZIP, QA logs, optional `.omap`) before reporting success. If Drive helper variables are missing, do not use `--drive-upload`; report the local ZIP path instead.
+
 ## Minimal skill instructions
 
 ```markdown

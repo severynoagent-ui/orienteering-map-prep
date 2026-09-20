@@ -49,6 +49,92 @@ To make a new, clean Hermes Agent behave like the workflow used during developme
 
 Without the optional Drive/gateway/Hermes skill setup, the repository still works as a CLI tool, but a new agent may only produce local packages and may need more explicit instructions.
 
+### Suggested Linux setup
+
+On Debian/Ubuntu-like systems, install system GDAL/PROJ packages first. The project intentionally uses the system Python GDAL bindings instead of hiding GDAL inside a Python virtual environment:
+
+```bash
+sudo apt update
+sudo apt install -y \
+  git \
+  python3 \
+  python3-gdal \
+  gdal-bin \
+  proj-bin \
+  unzip \
+  zip
+```
+
+Then clone and verify the repository:
+
+```bash
+git clone https://github.com/severynoagent-ui/orienteering-map-prep.git
+cd orienteering-map-prep
+
+/usr/bin/python3 - <<'PY'
+from osgeo import gdal, ogr, osr
+print('GDAL', gdal.VersionInfo('--version'))
+PY
+
+command -v gdalwarp gdal_translate gdalinfo ogr2ogr ogrinfo
+./scripts/test_mvp.sh
+```
+
+`./scripts/test_mvp.sh` compiles the Python modules and runs a tiny fixture job. It is the quickest check that GDAL, Python bindings, networking-independent code paths, ZIP creation and QA basics are available.
+
+### Disk, cache and output locations
+
+Defaults:
+
+- project outputs: `~/orimap-projects/<project-id>/`
+- shared cache: `~/.cache/orienteering-map-prep/`
+
+Override them when running large jobs or on machines with limited home-directory space:
+
+```bash
+export ORIMAP_PROJECT_ROOT=/data/orimap-projects
+export ORIMAP_CACHE_ROOT=/data/orimap-cache
+```
+
+Generated rasters, tiled outputs and ZIP packages can be large. For real areas, keep several GB free; for large/tiled areas, keep substantially more. Generated project outputs and caches should not be committed to git.
+
+### Hermes Agent setup
+
+A clean Hermes Agent needs the terminal and file tools enabled so it can clone the repository, inspect GPX attachments, run commands and verify outputs. Install or copy the skill instructions from `docs/hermes-skill.md` into the agent profile so natural-language requests like “prepare OB sprint materials including OOM and upload to Drive” are mapped to the correct CLI flags.
+
+Typical options:
+
+```bash
+# clone the repo somewhere stable
+git clone https://github.com/severynoagent-ui/orienteering-map-prep.git ~/orienteering-map-prep
+
+# create a local Hermes skill from the provided template/instructions
+mkdir -p ~/.hermes/skills/orienteering-map-prep
+cp ~/orienteering-map-prep/docs/hermes-skill.md ~/.hermes/skills/orienteering-map-prep/SKILL.md
+```
+
+Restart or reset the Hermes session after installing the skill so it can be discovered.
+
+### Optional Google Drive upload
+
+Drive upload is deliberately not hardcoded because credentials and APIs are user-specific. If you want an agent to upload results, provide a compatible helper script and point the pipeline at it:
+
+```bash
+export ORIMAP_GOOGLE_API=/path/to/google_api.py
+# optional, if your helper has an auth-check script:
+export ORIMAP_GOOGLE_SETUP=/path/to/setup.py
+# optional Python executable for the helper; defaults to current Python:
+export ORIMAP_GOOGLE_PY=/path/to/python
+```
+
+The helper must support the Drive operations used by `orimap_prep/drive_upload.py` (folder creation, file upload and metadata lookup). If Drive is not configured, agents should run without `--drive-upload`, report the local ZIP path, and must not claim that an upload succeeded.
+
+For tiled jobs with many files, prefer uploading the final ZIP unless the user explicitly wants a fully expanded Drive folder.
+
+### Optional Telegram/WhatsApp/gateway use
+
+Messaging-platform integration is a Hermes Agent concern, not a requirement of this CLI. Configure the Hermes gateway only if you want users to send GPX files through Telegram, WhatsApp or similar platforms. The pipeline itself only needs a local GPX file path.
+
 ## Default job config
 
 ```json
