@@ -32,6 +32,23 @@ Implemented and tested on this server:
 
 The implementation deliberately avoids QGIS GUI. It uses `/usr/bin/python3`, GDAL/OGR CLI tools and Python GDAL bindings (`osgeo`).
 
+## Requirements for reproducing the full agent workflow
+
+To make a new, clean Hermes Agent behave like the workflow used during development, the machine/profile must provide more than just this GitHub repository:
+
+| Requirement | Needed for |
+|---|---|
+| Python with GDAL bindings | `/usr/bin/python3` or equivalent must be able to `import osgeo` |
+| GDAL/OGR command-line tools | `gdalwarp`, `gdal_translate`, `gdalinfo`, `ogr2ogr`, `ogrinfo` |
+| Internet access | ČÚZK data services and BGS WMM2025 magnetic-declination lookup |
+| Sufficient disk space | intermediate rasters and ZIP packages can be large |
+| Hermes terminal/file tools | required if an agent should clone the repo, inspect files, and run the pipeline autonomously |
+| Google Drive upload setup | optional; configure a compatible Drive helper via `ORIMAP_GOOGLE_API` if the agent should upload results instead of only producing local ZIPs |
+| Messaging gateway attachments | optional; needed only if the agent should receive GPX files from Telegram/WhatsApp/etc. |
+| Hermes skill installation/instructions | optional but recommended; install or copy `docs/hermes-skill.md` so the agent interprets natural-language OB requests consistently |
+
+Without the optional Drive/gateway/Hermes skill setup, the repository still works as a CLI tool, but a new agent may only produce local packages and may need more explicit instructions.
+
 ## Default job config
 
 ```json

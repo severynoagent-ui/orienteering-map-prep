@@ -15,6 +15,23 @@ The workflow is optimized for Czech data sources:
 - RÚIAN building polygons
 - OpenOrienteering Mapper setup and optional `.omap` project generation
 
+## Requirements for the full workflow
+
+A clean Hermes Agent can use this repository, but to reproduce the full end-to-end workflow it must also have:
+
+| Requirement | Needed for |
+|---|---|
+| Python with GDAL bindings | `/usr/bin/python3` or equivalent must be able to `import osgeo` |
+| GDAL/OGR command-line tools | `gdalwarp`, `gdal_translate`, `gdalinfo`, `ogr2ogr`, `ogrinfo` |
+| Internet access | ČÚZK data downloads and BGS WMM2025 magnetic-declination lookup |
+| Sufficient disk space | intermediate rasters, tiled outputs and ZIP packages |
+| Hermes terminal/file tools | cloning the repo, reading files, running commands, verifying outputs |
+| Google Drive upload setup | optional; configure a compatible helper through `ORIMAP_GOOGLE_API` for Drive uploads |
+| Telegram/WhatsApp or other gateway attachments | optional; needed only when receiving GPX files through messaging platforms |
+| This skill/instruction file installed | recommended so the agent maps natural-language Czech OB requests to the right CLI flags |
+
+If Drive upload is not configured, produce and report the local ZIP instead of claiming an upload. If the skill is not installed, the CLI still works but the agent may require explicit command-line instructions.
+
 ## Minimal skill instructions
 
 ```markdown
