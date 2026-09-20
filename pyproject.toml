@@ -1,0 +1,11 @@
+[project]
+name = "orienteering-map-prep"
+version = "0.1.0"
+description = "Headless GIS pipeline for orienteering map base preparation"
+requires-python = ">=3.10"
+
+[project.scripts]
+orimap-prep = "orimap_prep.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

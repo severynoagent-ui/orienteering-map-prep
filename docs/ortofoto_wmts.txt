@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Capabilities xmlns="http://www.opengis.net/wmts/1.0"
+xmlns:ows="http://www.opengis.net/ows/1.1"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:gml="http://www.opengis.net/gml"
+xsi:schemaLocation="http://www.opengis.net/wmts/1.0 http://schemas.opengis.net/wmts/1.0/wmtsGetCapabilities_response.xsd"
+version="1.0.0">
+<!-- Service Identification --> <ows:ServiceIdentification>
+<ows:Title>ORTOFOTO</ows:Title>
+<ows:ServiceType>OGC WMTS</ows:ServiceType>
+<ows:ServiceTypeVersion>1.0.0</ows:ServiceTypeVersion>
+</ows:ServiceIdentification> <!-- Operations Metadata --> <ows:OperationsMetadata>
+<ows:Operation name="GetCapabilities">
+<ows:DCP>
+<ows:HTTP>
+<ows:Get xlink:href="https://ags.cuzk.cz/arcgis1/rest/services/ORTOFOTO/MapServer/WMTS/1.0.0/WMTSCapabilities.xml">
+<ows:Constraint name="GetEncoding">
+<ows:AllowedValues>
+<ows:Value>RESTful</ows:Value>
+</ows:AllowedValues>
+</ows:Constraint>
+</ows:Get>
+<!-- add KVP binding in 10.1 -->
+<ows:Get xlink:href="https://ags.cuzk.cz/arcgis1/rest/services/ORTOFOTO/MapServer/WMTS?">
+<ows:Constraint name="GetEncoding">
+<ows:AllowedValues>
+<ows:Value>KVP</ows:Value>
+</ows:AllowedValues>
+</ows:Constraint>
+</ows:Get>
+</ows:HTTP>
+</ows:DCP>
+</ows:Operation>
+<ows:Operation name="GetTile">
+<ows:DCP>
+<ows:HTTP>
+<ows:Get xlink:href="https://ags.cuzk.cz/arcgis1/rest/services/ORTOFOTO/MapServer/WMTS/tile/1.0.0/">
+<ows:Constraint name="GetEncoding">
+<ows:AllowedValues>
+<ows:Value>RESTful</ows:Value>
+</ows:AllowedValues>
+</ows:Constraint>
+</ows:Get>
+<ows:Get xlink:href="https://ags.cuzk.cz/arcgis1/rest/services/ORTOFOTO/MapServer/WMTS?">
+<ows:Constraint name="GetEncoding">
+<ows:AllowedValues>
+<ows:Value>KVP</ows:Value>
+</ows:AllowedValues>
+</ows:Constraint>
+</ows:Get>
+</ows:HTTP>
+</ows:DCP>
+</ows:Operation>
+</ows:OperationsMetadata> <Contents>
+<!--Layer--> <Layer>
+<ows:Title>ORTOFOTO</ows:Title> <ows:Identifier>ORTOFOTO</ows:Identifier>
+<ows:BoundingBox crs="urn:ogc:def:crs:EPSG::5514">
+<ows:LowerCorner>-907841.0560214706 -1230916.868999999</ows:LowerCorner>
+<ows:UpperCorner>-416691.670278527 -932111.7296999972</ows:UpperCorner>
+</ows:BoundingBox> <ows:WGS84BoundingBox crs="urn:ogc:def:crs:OGC:2:84">
+<ows:LowerCorner>11.884663195232779 48.196267122704086</ows:LowerCorner>
+<ows:UpperCorner>19.1628955969754 51.392706946488296</ows:UpperCorner>
+</ows:WGS84BoundingBox>
+<Style isDefault="true">
+<ows:Title>Default Style</ows:Title>
+<ows:Identifier>default</ows:Identifier>
+</Style>
+<Format>image/jpgpng</Format>
+<TileMatrixSetLink>
+<TileMatrixSet>default028mm</TileMatrixSet>
+</TileMatrixSetLink>
+<ResourceURL format="image/jpgpng" resourceType="tile" template="https://ags.cuzk.cz/arcgis1/rest/services/ORTOFOTO/MapServer/WMTS/tile/1.0.0/ORTOFOTO/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}" />
+</Layer> <!--TileMatrixSet-->
+<TileMatrixSet>
+<ows:Title>TileMatrix using 0.28mm</ows:Title>
+<ows:Abstract>The tile matrix set that has scale values calculated based on the dpi defined by OGC specification (dpi assumes 0.28mm as the physical distance of a pixel).</ows:Abstract> <ows:Identifier>default028mm</ows:Identifier>
+<ows:SupportedCRS>urn:ogc:def:crs:EPSG::5514</ows:SupportedCRS>
+<TileMatrix>
+<ows:Identifier>0</ows:Identifier>
+<ScaleDenominator>7315214.630428341</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>1</MatrixWidth> <MatrixHeight>1</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>1</ows:Identifier>
+<ScaleDenominator>3657607.3152141706</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>2</MatrixWidth> <MatrixHeight>2</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>2</ows:Identifier>
+<ScaleDenominator>1828803.6576070853</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>4</MatrixWidth> <MatrixHeight>3</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>3</ows:Identifier>
+<ScaleDenominator>914401.8288035427</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>8</MatrixWidth> <MatrixHeight>5</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>4</ows:Identifier>
+<ScaleDenominator>457200.9144017713</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>16</MatrixWidth> <MatrixHeight>10</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>5</ows:Identifier>
+<ScaleDenominator>228600.45720088566</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>32</MatrixWidth> <MatrixHeight>19</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>6</ows:Identifier>
+<ScaleDenominator>114300.22860044283</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>63</MatrixWidth> <MatrixHeight>38</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>7</ows:Identifier>
+<ScaleDenominator>57150.114300221416</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>125</MatrixWidth> <MatrixHeight>76</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>8</ows:Identifier>
+<ScaleDenominator>28575.057150110708</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>249</MatrixWidth> <MatrixHeight>152</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>9</ows:Identifier>
+<ScaleDenominator>14287.528575055354</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>497</MatrixWidth> <MatrixHeight>304</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>10</ows:Identifier>
+<ScaleDenominator>7143.764287527677</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>993</MatrixWidth> <MatrixHeight>608</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>11</ows:Identifier>
+<ScaleDenominator>3571.8821437638385</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>1986</MatrixWidth> <MatrixHeight>1215</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>12</ows:Identifier>
+<ScaleDenominator>1785.9410718819192</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>3971</MatrixWidth> <MatrixHeight>2429</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>13</ows:Identifier>
+<ScaleDenominator>892.9705359409596</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>7942</MatrixWidth> <MatrixHeight>4858</MatrixHeight>
+</TileMatrix>
+<TileMatrix>
+<ows:Identifier>14</ows:Identifier>
+<ScaleDenominator>446.4852679704798</ScaleDenominator>
+<TopLeftCorner>-925000.0 -920000.0</TopLeftCorner> <TileWidth>256</TileWidth> <TileHeight>256</TileHeight>
+<MatrixWidth>15883</MatrixWidth> <MatrixHeight>9715</MatrixHeight>
+</TileMatrix>
+</TileMatrixSet>
+</Contents>
+<ServiceMetadataURL xlink:href="https://ags.cuzk.cz/arcgis1/rest/services/ORTOFOTO/MapServer/WMTS/1.0.0/WMTSCapabilities.xml" /> </Capabilities>

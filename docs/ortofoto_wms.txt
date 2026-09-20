@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WMS_Capabilities version="1.3.0"
+  xmlns="http://www.opengis.net/wms"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:esri_wms="http://www.esri.com/wms"
+  xsi:schemaLocation="http://www.opengis.net/wms http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd http://www.esri.com/wms https://ags.cuzk.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?version=1.3.0%26service=WMS%26request=GetSchemaExtension">
+  <Service>
+    <Name><![CDATA[WMS]]></Name>
+    <Title><![CDATA[Prohlížecí služba pro ortofoto ČR]]></Title>
+    <Abstract><![CDATA[WMS]]></Abstract>
+    <KeywordList><Keyword><![CDATA[Služba zpřístupnění map]]></Keyword></KeywordList>
+    <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://ags.cuzk.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?"/>
+    <ContactInformation>
+      <ContactPersonPrimary>
+        <ContactPerson><![CDATA[Křížek, Milan]]></ContactPerson>
+        <ContactOrganization><![CDATA[Zeměměřický úřad]]></ContactOrganization>
+      </ContactPersonPrimary>
+      <ContactPosition><![CDATA[custodian]]></ContactPosition>
+      <ContactAddress>
+        <AddressType><![CDATA[postal]]></AddressType>
+        <Address><![CDATA[Pod sídlištěm 9]]></Address>
+        <City><![CDATA[Praha]]></City>
+        <StateOrProvince><![CDATA[Praha]]></StateOrProvince>
+        <PostCode><![CDATA[182 11]]></PostCode>
+        <Country><![CDATA[Česká republika]]></Country>
+      </ContactAddress>
+      <ContactVoiceTelephone><![CDATA[+420 318 643 130]]></ContactVoiceTelephone>
+      <ContactFacsimileTelephone><![CDATA[]]></ContactFacsimileTelephone>
+      <ContactElectronicMailAddress><![CDATA[milan.krizek@cuzk.gov.cz]]></ContactElectronicMailAddress>
+    </ContactInformation>
+    <Fees><![CDATA[© ČÚZK]]></Fees>
+    <AccessConstraints><![CDATA[https://geoportal.cuzk.gov.cz/Dokumenty/Podminky.pdf]]></AccessConstraints>
+    <MaxWidth>4096</MaxWidth>
+    <MaxHeight>4096</MaxHeight>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>application/vnd.ogc.wms_xml</Format>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://ags.cuzk.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?"/></Get></HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+        <Format>image/bmp</Format>
+        <Format>image/jpeg</Format>
+        <Format>image/tiff</Format>
+        <Format>image/png</Format>
+        <Format>image/png8</Format>
+        <Format>image/png24</Format>
+        <Format>image/png32</Format>
+        <Format>image/gif</Format>
+        <Format>image/svg+xml</Format>
+        <DCPType>
+          <HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://ags.cuzk.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?"/></Get></HTTP>
+        </DCPType>
+      </GetMap>
+      <GetFeatureInfo>
+        <Format>application/vnd.esri.wms_raw_xml</Format>
+        <Format>application/vnd.esri.wms_featureinfo_xml</Format>
+        <Format>application/vnd.ogc.wms_xml</Format>
+        <Format>application/geo+json</Format>
+        <Format>text/xml</Format>
+        <Format>text/html</Format>
+        <Format>text/plain</Format>
+        <DCPType>
+          <HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://ags.cuzk.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?"/></Get></HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+      <esri_wms:GetStyles>
+        <Format>application/vnd.ogc.sld+xml</Format>
+        <DCPType>
+          <HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://ags.cuzk.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?"/></Get></HTTP>
+        </DCPType>
+      </esri_wms:GetStyles>
+    </Request>
+    <Exception>
+      <Format>application/vnd.ogc.se_xml</Format>
+      <Format>application/vnd.ogc.se_inimage</Format>
+      <Format>application/vnd.ogc.se_blank</Format>
+      <Format>text/xml</Format>
+      <Format>XML</Format>
+    </Exception>
+    <Layer>
+      <Title><![CDATA[Layers]]></Title>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:5514</CRS>
+ <!-- alias 5514 -->
+<CRS>EPSG:102067</CRS>
+<CRS>EPSG:3034</CRS>
+<CRS>EPSG:3035</CRS>
+<CRS>EPSG:3045</CRS>
+<CRS>EPSG:3046</CRS>
+<CRS>EPSG:3333</CRS>
+<CRS>EPSG:28403</CRS>
+<CRS>EPSG:3334</CRS>
+<CRS>EPSG:28404</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:4258</CRS>
+<CRS>EPSG:5221</CRS>
+ <!-- alias 5221 -->
+<CRS>EPSG:102066</CRS>
+<CRS>EPSG:32633</CRS>
+<CRS>EPSG:32634</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>11.885448</westBoundLongitude><eastBoundLongitude>19.164528</eastBoundLongitude><southBoundLatitude>48.196887</southBoundLatitude><northBoundLatitude>51.393486</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="11.885448" miny="48.196887" maxx="19.164528" maxy="51.393486"/>
+<BoundingBox CRS="EPSG:4326" minx="48.196887" miny="11.885448" maxx="51.393486" maxy="19.164528"/>
+<BoundingBox CRS="EPSG:5514" minx="-907841.056021" miny="-1230916.869000" maxx="-416691.670279" maxy="-932111.729700"/>
+<BoundingBox CRS="EPSG:102067" minx="-907841.056021" miny="-1230916.869000" maxx="-416691.670279" maxy="-932111.729700"/>
+<BoundingBox CRS="EPSG:3034" minx="2394616.881496" miny="4128211.176415" maxx="2770391.273139" maxy="4649986.708964"/>
+<BoundingBox CRS="EPSG:3035" minx="2790358.281653" miny="4453776.969793" maxx="3179783.412422" maxy="4993640.169878"/>
+<BoundingBox CRS="EPSG:3045" minx="5341044.303360" miny="280755.060662" maxx="5700611.886131" maxy="806302.334951"/>
+<BoundingBox CRS="EPSG:3046" minx="5372659.642935" miny="-141114.678303" maxx="5695781.444680" maxy="364988.075233"/>
+<BoundingBox CRS="EPSG:3333" minx="5343275.626067" miny="3280663.677143" maxx="5702993.226818" maxy="3806430.010279"/>
+<BoundingBox CRS="EPSG:28403" minx="5343275.626067" miny="3280663.677143" maxx="5702993.226818" maxy="3806430.010279"/>
+<BoundingBox CRS="EPSG:3334" minx="5374904.143830" miny="3858618.098937" maxx="5698160.772014" maxy="4364931.798492"/>
+<BoundingBox CRS="EPSG:28404" minx="5374904.143830" miny="3858618.098937" maxx="5698160.772014" maxy="4364931.798492"/>
+<BoundingBox CRS="EPSG:3857" minx="1323082.059666" miny="6139672.544189" maxx="2133385.472838" maxy="6691194.266367"/>
+<BoundingBox CRS="EPSG:102100" minx="1323082.059666" miny="6139672.544189" maxx="2133385.472838" maxy="6691194.266367"/>
+<BoundingBox CRS="EPSG:4258" minx="48.196887" miny="11.885448" maxx="51.393486" maxy="19.164528"/>
+<BoundingBox CRS="EPSG:5221" minx="-907841.056021" miny="-1230916.869000" maxx="-416691.670279" maxy="-932111.729700"/>
+<BoundingBox CRS="EPSG:102066" minx="-907841.056021" miny="-1230916.869000" maxx="-416691.670279" maxy="-932111.729700"/>
+<BoundingBox CRS="EPSG:32633" minx="280755.060664" miny="5341044.303482" maxx="806302.334948" maxy="5700611.886255"/>
+<BoundingBox CRS="EPSG:32634" minx="-141114.678297" miny="5372659.643056" maxx="364988.075234" maxy="5695781.444804"/>
+      <Layer queryable="1">
+        <Name>0</Name>
+        <Title><![CDATA[ORTOFOTO]]></Title>
+        <Abstract><![CDATA[Prohlížecí služba Esri ArcGIS Server - Ortofoto ČR je poskytována jako veřejná prohlížecí služba nad daty ortofota České republiky. Jedná se o prohlížecí službu poskytovanou technologií Esri ArcGIS Server. Službu lze využít prostřednictvím přístupových rozhraní REST, SOAP a WMTS formou optimalizovaných mapových dlaždic v souřadnicovém systému S-JTSK/Krovak East North (EPSG 5514). Dále lze službu využít v různých souřadnicových systémech (definovaných v capabilities) prostřednictvím standardu WMS.Esri ArcGIS Server View Service - Orthophoto CR is provided as a public view service for the Orthophoto of the Czech Republic data. The view service is provided using the Esri ArcGIS Server technology. To optimize the speed, the data are provided in form of pre-prepared map tiles. The Service is accessible by one of access interfaces – REST, SOAP, WMTS and WMS.]]></Abstract>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:5514</CRS>
+ <!-- alias 5514 -->
+<CRS>EPSG:102067</CRS>
+<CRS>EPSG:3034</CRS>
+<CRS>EPSG:3035</CRS>
+<CRS>EPSG:3045</CRS>
+<CRS>EPSG:3046</CRS>
+<CRS>EPSG:3333</CRS>
+<CRS>EPSG:28403</CRS>
+<CRS>EPSG:3334</CRS>
+<CRS>EPSG:28404</CRS>
+<CRS>EPSG:3857</CRS>
+ <!-- alias 3857 -->
+<CRS>EPSG:102100</CRS>
+<CRS>EPSG:4258</CRS>
+<CRS>EPSG:5221</CRS>
+ <!-- alias 5221 -->
+<CRS>EPSG:102066</CRS>
+<CRS>EPSG:32633</CRS>
+<CRS>EPSG:32634</CRS>
+<EX_GeographicBoundingBox><westBoundLongitude>11.885448</westBoundLongitude><eastBoundLongitude>19.164528</eastBoundLongitude><southBoundLatitude>48.196887</southBoundLatitude><northBoundLatitude>51.393486</northBoundLatitude></EX_GeographicBoundingBox>
+<BoundingBox CRS="CRS:84" minx="11.885448" miny="48.196887" maxx="19.164528" maxy="51.393486"/>
+<BoundingBox CRS="EPSG:4326" minx="48.196887" miny="11.885448" maxx="51.393486" maxy="19.164528"/>
+<BoundingBox CRS="EPSG:5514" minx="-907841.056021" miny="-1230916.869000" maxx="-416691.670279" maxy="-932111.729700"/>
+<BoundingBox CRS="EPSG:102067" minx="-907841.056021" miny="-1230916.869000" maxx="-416691.670279" maxy="-932111.729700"/>
+<BoundingBox CRS="EPSG:3034" minx="2394616.881496" miny="4128211.176415" maxx="2770391.273139" maxy="4649986.708964"/>
+<BoundingBox CRS="EPSG:3035" minx="2790358.281653" miny="4453776.969793" maxx="3179783.412422" maxy="4993640.169878"/>
+<BoundingBox CRS="EPSG:3045" minx="5341044.303360" miny="280755.060662" maxx="5700611.886131" maxy="806302.334951"/>
+<BoundingBox CRS="EPSG:3046" minx="5372659.642935" miny="-141114.678303" maxx="5695781.444680" maxy="364988.075233"/>
+<BoundingBox CRS="EPSG:3333" minx="5343275.626067" miny="3280663.677143" maxx="5702993.226818" maxy="3806430.010279"/>
+<BoundingBox CRS="EPSG:28403" minx="5343275.626067" miny="3280663.677143" maxx="5702993.226818" maxy="3806430.010279"/>
+<BoundingBox CRS="EPSG:3334" minx="5374904.143830" miny="3858618.098937" maxx="5698160.772014" maxy="4364931.798492"/>
+<BoundingBox CRS="EPSG:28404" minx="5374904.143830" miny="3858618.098937" maxx="5698160.772014" maxy="4364931.798492"/>
+<BoundingBox CRS="EPSG:3857" minx="1323082.059666" miny="6139672.544189" maxx="2133385.472838" maxy="6691194.266367"/>
+<BoundingBox CRS="EPSG:102100" minx="1323082.059666" miny="6139672.544189" maxx="2133385.472838" maxy="6691194.266367"/>
+<BoundingBox CRS="EPSG:4258" minx="48.196887" miny="11.885448" maxx="51.393486" maxy="19.164528"/>
+<BoundingBox CRS="EPSG:5221" minx="-907841.056021" miny="-1230916.869000" maxx="-416691.670279" maxy="-932111.729700"/>
+<BoundingBox CRS="EPSG:102066" minx="-907841.056021" miny="-1230916.869000" maxx="-416691.670279" maxy="-932111.729700"/>
+<BoundingBox CRS="EPSG:32633" minx="280755.060664" miny="5341044.303482" maxx="806302.334948" maxy="5700611.886255"/>
+<BoundingBox CRS="EPSG:32634" minx="-141114.678297" miny="5372659.643056" maxx="364988.075234" maxy="5695781.444804"/>
+        <Style>
+          <Name>default</Name>
+          <Title><![CDATA[ORTOFOTO]]></Title>
+          <LegendURL width="18" height="18">
+            <Format>image/png</Format>
+            <OnlineResource xlink:href="https://ags.cuzk.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=0" xlink:type="simple" xmlns:xlink="http://www.w3.org/1999/xlink" />
+          </LegendURL>
+        </Style>
+      </Layer>
+    </Layer>
+  </Capability>
+</WMS_Capabilities>

@@ -1,0 +1,106 @@
+[
+  {
+    "name": "dmr5g",
+    "url": "https://ags.cuzk.cz/arcgis2/rest/services/dmr5g/ImageServer?f=pjson",
+    "status": 200,
+    "content_type": "text/plain; charset=UTF-8",
+    "bytes_saved": 9745,
+    "description": "Digitální model reliefu České republiky 5. generace (DMR 5G) představuje zobrazení přirozeného nebo lidskou činností upraveného zemského povrchu v digitálním tvaru ve formě výšek diskrétních bodů v nepravidelné trojúhelníkové síti (TIN) bodů o souřadnicích X,Y,H, kde H reprezentuje nadmořskou výšku ve výškovém referenčním systému Balt po vyrovnání (Bpv) s úplnou střední chybou výšky 0,18 m v odkrytém terénu a 0,3 m v zalesněném terénu. Model vznikl z dat pořízených metodou leteckého laserového skenování výškopisu území České republiky v letech 2009 až 2013. DMR 5G je určen k analýzám terénních poměrů lokálního charakteru a rozsahu, např. při projektování pozemkových úprav, plánování a projektování dopravních, vodohospodářských a pozemních staveb, modelování přírodních jevů lokálního charakteru, apod. DMR 5G je základní zdrojovou databází pro tvorbu vrstevnic určených pro mapy velkých měřítek a počítačové vizualizace výškopisu v územně orientovaných informačních systémech vysoké úrovně podrobnosti.",
+    "pixelSizeX": 2,
+    "pixelSizeY": 2,
+    "bandCount": 1,
+    "copyrightText": "© ČÚZK",
+    "extent": {
+      "ymin": -1227414.12,
+      "xmin": -904703.6,
+      "ymax": -935118.1200000001,
+      "xmax": -431605.6,
+      "spatialReference": {
+        "latestVcsWkid": 8357,
+        "latestWkid": 5514,
+        "wkid": 102067,
+        "vcsWkid": 8357
+      }
+    },
+    "spatialReference": {
+      "latestVcsWkid": 8357,
+      "latestWkid": 5514,
+      "wkid": 102067,
+      "vcsWkid": 8357
+    }
+  },
+  {
+    "name": "ortofoto_wmts",
+    "url": "https://ags.cuzk.cz/arcgis1/rest/services/ORTOFOTO/MapServer/WMTS/1.0.0/WMTSCapabilities.xml",
+    "status": 200,
+    "content_type": "text/xml; charset=utf-8",
+    "bytes_saved": 7909,
+    "layers": [
+      "ORTOFOTO",
+      "default",
+      "default028mm",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ]
+  },
+  {
+    "name": "ortofoto_wms",
+    "url": "https://ags.cuzk.cz/arcgis1/services/ORTOFOTO/MapServer/WMSServer?SERVICE=WMS&REQUEST=GetCapabilities",
+    "status": 200,
+    "content_type": "text/xml",
+    "bytes_saved": 11732,
+    "layers": [
+      "0",
+      "default"
+    ]
+  },
+  {
+    "name": "ortoarchiv_wms",
+    "url": "https://geoportal.cuzk.cz/WMS_ORTOFOTO_ARCHIV/WMService.aspx?SERVICE=WMS&REQUEST=GetCapabilities",
+    "status": 200,
+    "content_type": "text/xml",
+    "bytes_saved": 158062,
+    "layers": [
+      "WMS",
+      "1998",
+      "default",
+      "1999",
+      "default",
+      "2000",
+      "default",
+      "2001",
+      "default",
+      "2002",
+      "default",
+      "2003",
+      "default",
+      "2004",
+      "default",
+      "2005",
+      "default",
+      "2006",
+      "default",
+      "2007"
+    ]
+  },
+  {
+    "name": "dmr5g_atom_metadata",
+    "url": "https://geoportal.cuzk.cz/Default.aspx?mode=TextMeta&metadataXSL=full&side=WFS.ATOM_OSTATNI&metadataID=CZ-CUZK-ATOM-DMR5G-SJTSK",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "bytes_saved": 96787
+  }
+]
