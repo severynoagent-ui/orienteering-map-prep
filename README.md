@@ -2,6 +2,34 @@
 
 Headless GIS pipeline for preparing OpenOrienteering Mapper base layers from GPX-defined areas. It is **optimized for orienteering mapping in the Czech Republic**: default CRS is S-JTSK / Krovak (`EPSG:5514`) and the implemented data sources are official Czech ČÚZK services (DMR 5G, DMP OK, Ortofoto/CIR, RÚIAN buildings).
 
+## Quick add to Hermes Agent
+
+If you already have Hermes Agent installed and want to add this workflow as a skill, run:
+
+```bash
+# 1) Clone the CLI project somewhere stable; the skill calls this local repository.
+git clone https://github.com/severynoagent-ui/orienteering-map-prep.git ~/orienteering-map-prep
+
+# 2) Install the Hermes skill from the repository's public SKILL.md.
+hermes skills install \
+  https://raw.githubusercontent.com/severynoagent-ui/orienteering-map-prep/main/SKILL.md \
+  --name orienteering-map-prep \
+  --category productivity
+```
+
+Then start a new Hermes session, or run `/reload-skills` / `/reset` in an existing session so Hermes discovers the skill.
+
+Manual fallback:
+
+```bash
+mkdir -p ~/.hermes/skills/orienteering-map-prep
+cp ~/orienteering-map-prep/SKILL.md ~/.hermes/skills/orienteering-map-prep/SKILL.md
+```
+
+After that, ask Hermes something like: “Prepare orienteering sprint base materials from this GPX, including an OpenOrienteering Mapper project.”
+
+> Note: the skill gives Hermes the workflow instructions. The machine still needs GDAL/Python dependencies; see the requirements section below.
+
 ## Current status
 
 Implemented and tested on this server:
